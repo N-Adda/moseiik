@@ -450,9 +450,11 @@ mod tests {
     #[test]
     #[cfg(target_arch = "aarch64")]
     fn unit_test_aarch64() {
-        assert!(true);
+        let im1 = image::RgbImage::new(16, 16);
+        let im2 = image::RgbImage::new(16, 16);
+        let res = unsafe { super::l1_neon(&im1, &im1) };
+        assert_eq!(res, 0);
     }
-
     #[test]
     fn unit_test_generic() {
         // TODO
