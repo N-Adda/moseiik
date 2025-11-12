@@ -443,8 +443,21 @@ mod tests {
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     fn unit_test_x86() {
-        // TODO
-        assert!(true);
+        // Cas 1
+        use image::RgbImage;
+       
+        // On crée deux images de même taille
+        let im1 = image::RgbImage::new(8,3);
+        let im2 = image::RgbImage::new(3,3);
+        let res: i32;
+        let res_expected = 0;
+        
+        // Execution de la fonction et stockage du resultat
+        unsafe{
+            res = super::l1_x86_sse2(&im1, &im2);
+        }
+
+        assert_eq!(res, res_expected, "Différence resultat attendu");
     }
 
     #[test]
