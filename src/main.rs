@@ -450,14 +450,32 @@ mod tests {
     #[test]
     #[cfg(target_arch = "aarch64")]
     fn unit_test_aarch64() {
+        // Test 1 : images identiques
         let im1 = image::RgbImage::new(16, 16);
         let im2 = image::RgbImage::new(16, 16);
         let res = unsafe { super::l1_neon(&im1, &im1) };
         assert_eq!(res, 0);
+        // Test 2 : images différentes
+        let im3 = image::RgbImage::new(16, 16);
+        let mut im4 = image::RgbImage::new(16, 16);
+        im3.put_pixel(0, 0, image::Rgb([255, 255, 255]));
+        im4.put_pixel(0, 0, image::Rgb([0, 0, 0]));
+        let res2 = unsafe { super::l1_neon(&im3, &im4) };
+        assert_eq!(res2, 765);
     }
     #[test]
     fn unit_test_generic() {
         // TODO
-        assert!(true);
+    let im1 = image::RgbImage::new(16, 16);
+    let im2 = image::RgbImage::new(16, 16);
+    let res = super::l1_generic(&im1, &im2);
+    assert_eq!(res, 0);
+    //TEST 2 : images différentes
+    let mut im3 = image::RgbImage::new(16, 16);
+    let mut im4 = image::RgbImage::new(16, 16);
+    im3.put_pixel(0, 0, image::Rgb([123, 50, 20]));
+    im4.put_pixel(0, 0, image::Rgb([0, 0, 0]));
+    let res2 = super::l1_generic(&im3, &im4);
+    assert_eq!(res2, 193);
     }
 }
