@@ -447,17 +447,29 @@ mod tests {
         use image::RgbImage;
        
         // On crée deux images de même taille
-        let im1 = image::RgbImage::new(8,3);
-        let im2 = image::RgbImage::new(3,3);
-        let res: i32;
-        let res_expected = 0;
-        
+        let mut im1 = image::RgbImage::new(3,3);
+        let mut im2 = image::RgbImage::new(3,3);
+        let mut res: i32;
+        let mut res_expected = 0;
         // Execution de la fonction et stockage du resultat
         unsafe{
             res = super::l1_x86_sse2(&im1, &im2);
         }
 
         assert_eq!(res, res_expected, "Différence resultat attendu");
+
+        let mut im3 = image::RgbImage::new(3,3);
+        let mut im4 = image::RgbImage::new(3,3);
+
+        im3.put_pixel(0, 0, image::Rgb([255,255,255]));
+        im4.put_pixel(0, 0, image::Rgb([200,255,255]));
+
+        unsafe{
+            res = super::l1_x86_sse2(&im3, &im4);
+        }
+        res_expected = 55;
+        assert_eq!(res, res_expected, "Différence resultat attendu");
+
     }
 
     #[test]
