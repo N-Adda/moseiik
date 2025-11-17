@@ -440,13 +440,15 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use image::{ImageReader, Rgb, RgbImage};
+
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     fn unit_test_x86() {
         // Cas 1
         use image::RgbImage;
        
-        // On crée deux images de même taille
+        // On crée deux images identiques
         let mut im1 = image::RgbImage::new(3,3);
         let mut im2 = image::RgbImage::new(3,3);
         let mut res: i32;
@@ -458,16 +460,22 @@ mod tests {
 
         assert_eq!(res, res_expected, "Différence resultat attendu");
 
+        // Cas 2
+        // On crée deux images différentes 
         let mut im3 = image::RgbImage::new(3,3);
         let mut im4 = image::RgbImage::new(3,3);
-
+        
+        // Modification du premier pixel des deux images 
         im3.put_pixel(0, 0, image::Rgb([255,255,255]));
         im4.put_pixel(0, 0, image::Rgb([200,255,255]));
 
         unsafe{
             res = super::l1_x86_sse2(&im3, &im4);
         }
+
+        // Différence attendue entre les deux images
         res_expected = 55;
+
         assert_eq!(res, res_expected, "Différence resultat attendu");
 
     }
@@ -482,5 +490,32 @@ mod tests {
     fn unit_test_generic() {
         // TODO
         assert!(true);
+    }
+    #[test]
+    fn unit_prepare_target() {
+
+        // Definition des paramètres de test
+        let tile_size = super::Size {width:3,height:3};
+        let scale = 10;
+
+        // Appel de la fonction à tester
+        let res = super::prepare_target("assets/kit.jpeg", scale, &tile_size).expect("Impossible d'ouvrir l'image");
+        // Vérifications width et height multiples de tile_size
+        assert_eq!(res.width() % tile_size.width, 0, "Width incorrecte !");
+        assert_eq!(res.height() % tile_size.height, 0, "Height incorrecte !");
+
+        // Création d'une image de référence redimensionnée pour comparer avec le résultat attendu
+        let img: RgbImage = match ImageReader::open("assets/kit.jpeg") {
+            Ok(i) => match i.decode() { // Etape decodage
+                Ok(img) => img.into_rgb8(), // Etape conversion en RgbImage comme la fonction prepare_target
+                Err(_) => panic!("Erreur lors du décodage de l'image"),
+            },
+            Err(_) => panic!("Erreur lors de la conversion en RgbImage"),
+        };
+        
+        // Vérifications width et height après resize : doit être égale à l'image d'origine * scale
+        assert_eq!(img.width()*scale, res.width(), "Width incorrecte après resize !");
+        assert_eq!(img.height()*scale, res.height(), "Height incorrecte après resize !");
+        
     }
 }
