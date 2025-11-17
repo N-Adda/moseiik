@@ -478,4 +478,16 @@ mod tests {
     let res2 = super::l1_generic(&im3, &im4);
     assert_eq!(res2, 193);
     }
+    #[test]
+    fn unit_test_prepare_tiles() {
+        // TODO
+        let tile_size = super::Size { width: 5, height: 5};
+        let image = String::from("./assets/tiles-small");
+        let tiles= super::prepare_tiles(&image, &tile_size, false).unwrap();
+        assert_eq!(tiles.len(), 4);
+        for tile in &tiles {
+            assert_eq!(tile.width(), 5);
+            assert_eq!(tile.height(), 5);
+        }
+    }
 }
