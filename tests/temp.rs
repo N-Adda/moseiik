@@ -3,7 +3,20 @@ mod tests {
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     fn test_x86() {
-        // TODO
+        // Fonction compute mosaic prend en arg un type Options
+
+        let args = moseiik::main::Options {
+            image: "assets/kit.jpeg",
+            output: "tests/x86img.png",
+            tiles: "assets",
+            scaling: 1,
+            tile_size: 25,
+            remove_used: false,
+            verbose: true,
+            simd: true,
+            num_thread: 1,
+        }
+
         // test avx2 or sse2 if available
         assert!(false);
     }
