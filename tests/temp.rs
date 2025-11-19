@@ -45,8 +45,8 @@ mod tests {
         assert_eq!(w_ref, w_test, "Largeur des images différente");
         assert_eq!(h_ref, h_test, "Hauteur des images différente");
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref-1 {
-            for j in 0..w_ref-1{
+        for i in 0..h_test-1 {
+            for j in 0..w_test-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
@@ -99,8 +99,8 @@ mod tests {
         assert_eq!(w_ref, w_test, "Largeur des images différente");
         assert_eq!(h_ref, h_test, "Hauteur des images différente");
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref-1 {
-            for j in 0..w_ref-1{
+        for i in 0..h_test-1 {
+            for j in 0..w_test-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
@@ -151,8 +151,8 @@ mod tests {
         assert_eq!(w_ref, w_test, "Largeur des images différente");
         assert_eq!(h_ref, h_test, "Hauteur des images différente");
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref-1 {
-            for j in 0..w_ref-1{
+        for i in 0..h_test-1 {
+            for j in 0..w_test-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
