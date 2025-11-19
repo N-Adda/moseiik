@@ -1,0 +1,5 @@
+cat > .dockerignore << 'EOF'
+target/
+.git/
+.gitignore
+EOF 
