@@ -25,8 +25,8 @@ jobs:
 
             - name: Build Docker image
               run: |
-                docker build --platform ${{ matrix.platform }} -t moseiik-test --load .
+                docker buildx build --platform ${{ matrix.platform }} -t moseiik-test --load .
             - name: Run tests
-              run : |
+              run: |
                 docker run --rm --platform ${{ matrix.platform }} moseiik-test
               
