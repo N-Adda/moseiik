@@ -12,7 +12,7 @@ mod tests {
         let args = moseiik::main::Options {
             image: "assets/kit.jpeg".to_string(),
             output: "tests/x86img.png".to_string(),
-            tiles: "assert/images".to_string(),
+            tiles: "assets/images".to_string(),
             scaling: 1,
             tile_size: 25,
             remove_used: false,
@@ -66,7 +66,7 @@ mod tests {
         let args = moseiik::main::Options {
             image: "assets/kit.jpeg".to_string(),
             output: "tests/x86img.png".to_string(),
-            tiles: "assert/images".to_string(),
+            tiles: "assets/images".to_string(),
             scaling: 1,
             tile_size: 25,
             remove_used: false,
@@ -118,7 +118,7 @@ mod tests {
         let args = moseiik::main::Options {
             image: "assets/kit.jpeg".to_string(),
             output: "tests/x86img.png".to_string(),
-            tiles: "assert/images".to_string(),
+            tiles: "assets/images".to_string(),
             scaling: 1,
             tile_size: 25,
             remove_used: false,
