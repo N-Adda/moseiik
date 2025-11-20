@@ -1,5 +1,6 @@
-cat > .dockerignore << 'EOF'
-target/
-.git/
+target
+**/target
+*.rs.bk
+.git
 .gitignore
-EOF 
+Dockerfile

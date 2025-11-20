@@ -15,7 +15,6 @@ jobs:
               uses: actions/checkout@v3
 
             - name: Set up QEMU (ARM64 only)
-              if: matrix.platform == 'linux/arm64'
               uses: docker/setup-qemu-action@v3
               with:
                  platforms: linux/arm64
@@ -24,8 +23,14 @@ jobs:
               uses: docker/setup-buildx-action@v3
 
             - name: Build Docker image
-              run: |
-                docker buildx build --platform ${{ matrix.platform }} -t moseiik-test --load .
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  platforms: ${{ matrix.platform }}
+                  load: true
+                  tags: moseiik-test
+                  cache-from: type=gha
+                  cache-to: type=gha,mode=max
             - name: Run tests
               run: |
                 docker run --rm --platform ${{ matrix.platform }} moseiik-test
