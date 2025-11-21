@@ -4,6 +4,9 @@ mod tests {
     use image::ImageReader;
     use moseiik::main::compute_mosaic;
     use std::error::Error;
+
+    // Fonction decode in RGB a part pour regler le prob d'ouverture fichier
+    // Meme principe que main ligne 95
     fn tile_result(image_path: &str) -> Result<RgbImage, Box<dyn Error>>  {
         let target = ImageReader::open(image_path)?.decode()?.into_rgb8();
         Ok(target)
@@ -125,7 +128,7 @@ mod tests {
             tile_size: 25,
             remove_used: false,
             verbose: true,
-            simd: false,
+            simd: true,
             num_thread: 1,
         };
         // On recrée l'image en utilisant la fonction
