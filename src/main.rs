@@ -489,7 +489,7 @@ mod tests {
         let res = unsafe { super::l1_neon(&im1, &im1) };
         assert_eq!(res, 0);
         // Test 2 : images différentes
-        let im3 = image::RgbImage::new(16, 16);
+        let mut im3 = image::RgbImage::new(16, 16);
         let mut im4 = image::RgbImage::new(16, 16);
         im3.put_pixel(0, 0, image::Rgb([255, 255, 255]));
         im4.put_pixel(0, 0, image::Rgb([0, 0, 0]));
