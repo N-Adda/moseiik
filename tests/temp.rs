@@ -42,20 +42,22 @@ mod tests {
         // Récupère la taille et compare les deux images
         let (w_ref,h_ref) = img2.dimensions();
         let (w_test,h_test) = img1.dimensions();
-        assert_eq!(w_ref, w_test, "Largeur des images différente");
-        assert_eq!(h_ref, h_test, "Hauteur des images différente");
+        if w_ref != w_test {
+            assert!(false, "Width differentes !: ref {}, test {}", w_ref, w_test);
+        }
+        if h_ref != h_test {
+            assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
+        }
         // On teste pixel par pixel si les images sont similaires sinon false
         for i in 0..h_ref-1 {
             for j in 0..w_ref-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
-                    assert(false, "Pixel différent ! : w: {}, h: {}", y,x);
+                    assert!(false, "Pixel différent ! : w: {}, h: {}", j,i);
                 }
             }
         }
-
-        // test avx2 or sse2 if available
     }
 
     #[test]
@@ -96,19 +98,22 @@ mod tests {
         // Récupère la taille et compare les deux images
         let (w_ref,h_ref) = img2.dimensions();
         let (w_test,h_test) = img1.dimensions();
-        assert_eq!(w_ref, w_test, "Largeur des images différente");
-        assert_eq!(h_ref, h_test, "Hauteur des images différente");
+        if w_ref != w_test {
+            assert!(false, "Width differentes !: ref {}, test {}", w_ref, w_test);
+        }
+        if h_ref != h_test {
+            assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
+        }
         // On teste pixel par pixel si les images sont similaires sinon false
         for i in 0..h_ref-1 {
             for j in 0..w_ref-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
-                    assert(false, "Pixel différent ! : w: {}, h: {}", y,x);
+                    assert!(false, "Pixel différent ! : w: {}, h: {}", j,i);
                 }
             }
         } 
-        assert!(false);
     }
 
     #[test]
@@ -148,18 +153,21 @@ mod tests {
         // Récupère la taille et compare les deux images
         let (w_ref,h_ref) = img2.dimensions();
         let (w_test,h_test) = img1.dimensions();
-        assert_eq!(w_ref, w_test, "Largeur des images différente");
-        assert_eq!(h_ref, h_test, "Hauteur des images différente");
+        if w_ref != w_test {
+            assert!(false, "Width differentes !: ref {}, test {}", w_ref, w_test);
+        }
+        if h_ref != h_test {
+            assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
+        }
         // On teste pixel par pixel si les images sont similaires sinon false
         for i in 0..h_ref-1 {
             for j in 0..w_ref-1{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 if pix1 != pix2 {
-                    assert(false, "Pixel différent ! : w: {}, h: {}", y,x);
+                    assert!(false, "Pixel différent ! : w: {}, h: {}", j,i);
                 }
             }
         }
-        assert!(false);
     }
 }
