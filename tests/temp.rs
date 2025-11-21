@@ -1,4 +1,4 @@
-/*#[cfg(test)]
+#[cfg(test)]
 mod tests {
     use image::RgbImage;
     use image::ImageReader;
@@ -166,4 +166,4 @@ mod tests {
             }
         }
     }
-}*/
+}
