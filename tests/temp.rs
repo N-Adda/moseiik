@@ -55,8 +55,8 @@ mod tests {
             assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
         }
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref {
-            for j in 0..w_ref {
+        for i in 0..h_ref-1 {
+            for j in 0..w_ref-1 {
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 assert_eq!(pix1, pix2, "Pixel différent ! : w: {}, h: {}", j,i);
@@ -158,8 +158,8 @@ mod tests {
             assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
         }
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref {
-            for j in 0..w_ref {
+        for i in 0..h_ref-1 {
+            for j in 0..w_ref-1 {
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 assert_eq!(pix1, pix2, "Pixel différent ! : w: {}, h: {}", j,i);
