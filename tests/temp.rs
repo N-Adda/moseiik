@@ -33,7 +33,7 @@ mod tests {
 
         // image générée
         let img1 ;
-        match tile_result("x86img.png") {
+        match tile_result("tests/x86img.png") {
             Ok(i) => img1 = i,
             Err(_) => return,
         };
@@ -85,7 +85,7 @@ mod tests {
 
         // image générée
         let img1 ;
-        match tile_result("x86img.png") {
+        match tile_result("tests/aarch64img.png") {
             Ok(i) => img1 = i,
             Err(_) => return,
         };
@@ -136,7 +136,7 @@ mod tests {
 
         // image générée
         let img1 ;
-        match tile_result("x86img.png") {
+        match tile_result("tests/genericimg.png") {
             Ok(i) => img1 = i,
             Err(_) => return,
         };
