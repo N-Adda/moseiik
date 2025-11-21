@@ -5,7 +5,7 @@ mod tests {
     use moseiik::main::compute_mosaic;
     use std::error::Error;
 
-    // Fonction decode in RGB a part pour regler le prob d'ouverture fichier
+    // Fonction decode in RGB séparé du test pour régler le prob d'ouverture fichier
     // Meme principe que main ligne 95
     fn tile_result(image_path: &str) -> Result<RgbImage, Box<dyn Error>>  {
         let target = ImageReader::open(image_path)?.decode()?.into_rgb8();
@@ -55,8 +55,8 @@ mod tests {
             assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
         }
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref-1 {
-            for j in 0..w_ref-1 {
+        for i in 0..h_ref {
+            for j in 0..w_ref {
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 assert_eq!(pix1, pix2, "Pixel différent ! : w: {}, h: {}", j,i);
@@ -158,8 +158,8 @@ mod tests {
             assert!(false, "Height differentes !: ref {}, test {}", h_ref, h_test);
         }
         // On teste pixel par pixel si les images sont similaires sinon false
-        for i in 0..h_ref-1 {
-            for j in 0..w_ref-1 {
+        for i in 0..h_ref {
+            for j in 0..w_ref {
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 assert_eq!(pix1, pix2, "Pixel différent ! : w: {}, h: {}", j,i);

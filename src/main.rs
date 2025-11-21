@@ -445,12 +445,9 @@ mod tests {
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     fn unit_test_x86() {
-        // Cas 1
-        use image::RgbImage;
-       
         // On crée deux images identiques
-        let mut im1 = image::RgbImage::new(3,3);
-        let mut im2 = image::RgbImage::new(3,3);
+        let im1 = image::RgbImage::new(3,3);
+        let im2 = image::RgbImage::new(3,3);
         let mut res: i32;
         let mut res_expected = 0;
         // Execution de la fonction et stockage du resultat
