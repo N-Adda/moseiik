@@ -496,6 +496,7 @@ mod tests {
     #[test]
     fn unit_test_generic() {
         // TODO
+    // TEST 1 : images identiques
     let im1 = image::RgbImage::new(16, 16);
     let im2 = image::RgbImage::new(16, 16);
     let res = super::l1_generic(&im1, &im2);
@@ -511,10 +512,14 @@ mod tests {
     #[test]
     fn unit_test_prepare_tiles() {
         // TODO
+        // Definition des paramètres de test
         let tile_size = super::Size { width: 5, height: 5};
         let image = String::from("./assets/tiles-small");
+        // Appel de la fonction à tester qui prend en entrée le dossier d'images et la taille des tiles
         let tiles= super::prepare_tiles(&image, &tile_size, false).unwrap();
+        // Vérification du bon nombre de tiles 
         assert_eq!(tiles.len(), 4);
+        // Vérification que la fonction prepare_tiles redimensionne correctement les tiles
         for tile in &tiles {
             assert_eq!(tile.width(), 5);
             assert_eq!(tile.height(), 5);

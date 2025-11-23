@@ -17,6 +17,8 @@ mod tests {
     fn test_x86() {
         // Fonction compute mosaic prend en arg un type Options
 
+        use core::panic;
+
         let args = moseiik::main::Options {
             image: "assets/kit.jpeg".to_string(),
             output: "tests/x86img.png".to_string(),
@@ -35,13 +37,13 @@ mod tests {
         let img1 ;
         match tile_result("tests/x86img.png") {
             Ok(i) => img1 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image générée : {}", e),
         };
         // image base
         let img2 ;
-        match tile_result("assets/ground-truth-kit.jpeg") {
+        match tile_result("assets/ground-truth-kit.png") {
             Ok(i) => img2 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image de référence : {}", e),
         };
         // Récupère la taille et compare les deux images
         let w_ref = img2.width();
@@ -87,13 +89,13 @@ mod tests {
         let img1 ;
         match tile_result("tests/aarch64img.png") {
             Ok(i) => img1 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image générée : {}", e),
         };
         // image base
         let img2 ;
-        match tile_result("assets/ground-truth-kit.jpeg") {
+        match tile_result("assets/ground-truth-kit.png") {
             Ok(i) => img2 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image de référence : {}", e),
         };
         // Récupère la taille et compare les deux images
         let w_ref = img2.width();
@@ -138,13 +140,13 @@ mod tests {
         let img1 ;
         match tile_result("tests/genericimg.png") {
             Ok(i) => img1 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image générée : {}", e),
         };
         // image base
         let img2 ;
-        match tile_result("assets/ground-truth-kit.jpeg") {
+        match tile_result("assets/ground-truth-kit.png") {
             Ok(i) => img2 = i,
-            Err(_) => return,
+            Err(e) => panic!("Erreur lors de l'ouverture de l'image de référence : {}", e),
         };
         // Récupère la taille et compare les deux images
         let w_ref = img2.width();
@@ -159,7 +161,7 @@ mod tests {
         }
         // On teste pixel par pixel si les images sont similaires sinon false
         for i in 0..h_ref {
-            for j in 0..w_ref {
+            for j in 0..w_ref{
                 let pix1 = img1.get_pixel(j,i);
                 let pix2 = img2.get_pixel(j,i);
                 assert_eq!(pix1, pix2, "Pixel différent ! : w: {}, h: {}", j,i);
